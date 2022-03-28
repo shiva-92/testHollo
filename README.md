@@ -9,3 +9,9 @@ npm start
 ```
 
 ## dark mode
+
+```sh
+cd react-darkmode
+yarn install
+yarn start
+```
