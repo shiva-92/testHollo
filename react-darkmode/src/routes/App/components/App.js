@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import "../styles/_app.scss";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    //si valeur du state darkmode true, on ajoute className dark mode au roof html
+    //if the state darkmode takes true, we add "dark-mode" as a className to the root html element
     if (darkMode) {
       document.documentElement.classList.add("dark-mode");
-    } else {
-      //si valeur du state darkmode false, on supprime className dark mode au roof html
-
+    }
+    //else, we remove "dark-mode" as a className from the root html element
+    else {
       document.documentElement.classList.remove("dark-mode");
     }
+    //darkMode as depency of the useEffect to trigger action when the value of the state changes
   }, [darkMode]);
 
   return (
@@ -25,12 +26,14 @@ function App() {
         </div>
 
         {/* --The button that should toggle dark mode-- */}
+
         <button className="app__dark-mode-btn icon level-right">
           <FontAwesomeIcon
-            icon={faMoon}
+            //ternary : if state darkMode takes true, icon takes faMoon, otherwise icon takes faSun
+            icon={darkMode ? faSun : faMoon}
+            color={darkMode && "#FFA500"}
             onClick={() => {
-              //au clic je met change la valeur actuelle du state darkMode (faux, faux à vrai), on fait
-              //l'action via useffect qui prends en compte la valeur actualisée de state
+              //on click on the button, we change the current value of the state
               setDarkMode(!darkMode);
             }}
           />
